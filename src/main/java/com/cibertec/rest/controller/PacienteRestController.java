@@ -1,6 +1,5 @@
 package com.cibertec.rest.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +109,7 @@ public class PacienteRestController {
 		
 	}
 	
+	//endpoint: http://localhost:8083/apiPaciente/getPaciente
 	@GetMapping("/getPaciente/{id}")
 	public PacienteDTO obtenerPaciente(@PathVariable("id") int id){
 		System.out.println("ini: obtenerPaciente");
