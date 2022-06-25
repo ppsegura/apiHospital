@@ -53,8 +53,8 @@ CREATE TABLE `cita_medica` (
 CREATE TABLE `historial_medico` (
   `HistorialMedicoID` int NOT NULL,
   `CitaMedicaID` int DEFAULT NULL,
-  `Sintomas` int DEFAULT NULL,
-  `Diagnostico` int DEFAULT NULL,
+  `Sintomas` varchar(450) DEFAULT NULL,
+  `Diagnostico` varchar(250) DEFAULT NULL,
   `Peso` double DEFAULT NULL,
   `Altura` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -147,7 +147,6 @@ insert into paciente values(null,'Pedro', 'Peña', 'Segura', 'ppsegura@gmail.com
 --
 -- Índices para tablas volcadas
 --
-
 --
 -- Indices de la tabla `cita_medica`
 --
