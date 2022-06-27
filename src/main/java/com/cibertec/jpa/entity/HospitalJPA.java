@@ -1,12 +1,29 @@
 package com.cibertec.jpa.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.cibertec.model.dto.HospitalDTO;
 
-public class HospitalJPA {
+@Entity
+@Table(name ="hospital")
+public class HospitalJPA implements Serializable{
 	
+	@Id
+	@Column(name ="HospitalID")
 	private int id_hospital;
+	
+	@Column(name ="Departamento")
 	private String departamento;
+	
+	@Column(name ="Distrito")
 	private String distrito;
+	
+	@Column(name ="Direccion")
 	private String direccion;
 	
 	public HospitalJPA() {

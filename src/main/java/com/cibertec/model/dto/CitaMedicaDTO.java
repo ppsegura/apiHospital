@@ -1,10 +1,11 @@
 package com.cibertec.model.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import com.cibertec.jpa.entity.CitaMedicaJPA;
 
-public class CitaMedicaDTO {
+public class CitaMedicaDTO implements Serializable{
 
 	 private int id_citamedica;
 	 private Date fecha_creacion;

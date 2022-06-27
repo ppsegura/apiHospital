@@ -1,8 +1,10 @@
 package com.cibertec.model.dto;
 
+import java.io.Serializable;
+
 import com.cibertec.jpa.entity.HistorialMedicoJPA;
 
-public class HistorialMedicoDTO {
+public class HistorialMedicoDTO implements Serializable{
 
 	private int id_historialmedico;
 	private int id_citamedica;

@@ -1,17 +1,39 @@
 package com.cibertec.jpa.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.cibertec.model.dto.CitaMedicaDTO;
 
-public class CitaMedicaJPA {
+@Entity
+@Table(name = "cita_medica")
+public class CitaMedicaJPA implements Serializable{
 	
+	 @Id
+	 @Column(name = "CitaMedicaID")
 	 private int id_citamedica;
+	 
+	 @Column(name = "Fecha_Creacion")
 	 private Date fecha_creacion;
+	 
+	 @Column(name = "PacienteID")
 	 private int id_paciente;
+	 
+	 @Column(name = "MedicoID")
 	 private int id_medico;
+	 
+	 @Column(name = "Area")
 	 private String area;
+	 
+	 @Column(name = "HospitalID")
 	 private int id_hospital;
+	 
+	 @Column(name = "Estado")
 	 private String estado;
 	 
 	 public CitaMedicaJPA(){

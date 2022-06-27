@@ -29,95 +29,12 @@ CREATE DATABASE bd_hospital;
 -- activamos la bd
 USE bd_hospital;
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cita_medica`
---
-
-CREATE TABLE `cita_medica` (
-  `CitaMedicaID` int NOT NULL,
-  `Fecha_Creacion` date NOT NULL,
-  `PacienteID` int NOT NULL,
-  `MedicoID` int NOT NULL,
-  `Area` varchar(50) NOT NULL,
-  `HospitalID` int NOT NULL,
-  `Estado` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `historial_medico`
---
-
-CREATE TABLE `historial_medico` (
-  `HistorialMedicoID` int NOT NULL,
-  `CitaMedicaID` int DEFAULT NULL,
-  `Sintomas` varchar(450) DEFAULT NULL,
-  `Diagnostico` varchar(250) DEFAULT NULL,
-  `Peso` double DEFAULT NULL,
-  `Altura` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `hospital`
---
-
-CREATE TABLE `hospital` (
-  `HospitalID` int NOT NULL,
-  `Departamento` varchar(50) NOT NULL,
-  `Distrito` varchar(50) NOT NULL,
-  `Direccion` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `hospital`
---
-
-INSERT INTO `hospital` (`HospitalID`, `Departamento`, `Distrito`, `Direccion`) VALUES
-(1, 'Lima', 'Comas', 'Av. Túpac Amaru Km. 4.5, Comas 15328'),
-(2, 'Lima', 'San Juan de Lurigancho', 'Av. Canto Grande, San Juan de Lurigancho 15423'),
-(3, 'Lima', 'San Borja', 'Av. Javier Prado Este 3101, Cercado de Lima 15037'),
-(4, 'Lima', 'Los Olivos', 'Av. Naranjal, Cercado de Lima 15328'),
-(5, 'Lima', 'Callao', 'Av. Tomas Valle 3535, Callao 07036');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `medico`
---
-
-CREATE TABLE `medico` (
-  `MedicoID` int NOT NULL,
-  `HospitalID` int NOT NULL,
-  `Nombre` varchar(50) DEFAULT NULL,
-  `ApePat` varchar(50) DEFAULT NULL,
-  `ApeMat` varchar(50) DEFAULT NULL,
-  `Especialidad` varchar(255) DEFAULT NULL,
-  `Area` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `medico`
---
-
-INSERT INTO `medico` (`MedicoID`, `HospitalID`, `Nombre`, `ApePat`, `ApeMat`, `Especialidad`, `Area`) VALUES
-(6, 2, 'Jorge Luis', 'Gonzalez', 'Echeverria', 'Dermatología', NULL),
-(7, 5, 'Frank Jesùs', 'Diestra', 'Mezarina', 'Traumatología', NULL),
-(8, 4, 'John Paul', 'Chunga', 'Castillo', 'Pediatría', NULL),
-(9, 3, 'Kevin Jorge', 'Argote', 'Basualdo', 'Cardiología', NULL),
-(10, 1, 'Jose Luis', 'Castillo', 'Montes', 'Gastroenterología', NULL);
-
--- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `paciente`
 --
 
 CREATE TABLE `paciente` (
-  `PacienteID` int NOT NULL,
+  `PacienteID` int NOT NULL auto_increment primary key,
   `Nombres` varchar(50) DEFAULT NULL,
   `ApePat` varchar(50) DEFAULT NULL,
   `ApeMat` varchar(50) DEFAULT NULL,
@@ -143,12 +60,101 @@ INSERT INTO `paciente` (`PacienteID`, `Nombres`, `ApePat`, `ApeMat`, `Email`, `T
 (8, 'Brandon', 'Villanueva', 'Salas', 'branvillsal@gmail.com', 'DNI', '41567841', '2000-07-13', 21),
 (9, 'Ivan Enrique', 'Escobar', 'Hanco', 'ivaneschanc@gmail.com', 'DNI', '98745862', '2001-06-20', 20);
 
-insert into paciente values(null,'Pedro', 'Peña', 'Segura', 'ppsegura@gmail.com', 'DNI', '55555555', '1998-06-20', 25);
+/*insert into paciente values('Pedro', 'Peña', 'Segura', 'ppsegura@gmail.com', 'DNI', '55555555', '1998-06-20', 25);*/
 --
+--
+--
+-- Estructura de tabla para la tabla `hospital`
+--
+
+CREATE TABLE `hospital` (
+  `HospitalID` int NOT NULL auto_increment primary key,
+  `Departamento` varchar(50) NOT NULL,
+  `Distrito` varchar(50) NOT NULL,
+  `Direccion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `hospital`
+--
+
+INSERT INTO `hospital` (`HospitalID`, `Departamento`, `Distrito`, `Direccion`) VALUES
+(1, 'Lima', 'Comas', 'Av. Túpac Amaru Km. 4.5, Comas 15328'),
+(2, 'Lima', 'San Juan de Lurigancho', 'Av. Canto Grande, San Juan de Lurigancho 15423'),
+(3, 'Lima', 'San Borja', 'Av. Javier Prado Este 3101, Cercado de Lima 15037'),
+(4, 'Lima', 'Los Olivos', 'Av. Naranjal, Cercado de Lima 15328'),
+(5, 'Lima', 'Callao', 'Av. Tomas Valle 3535, Callao 07036');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `medico`
+--
+
+CREATE TABLE `medico` (
+  `MedicoID` int NOT NULL auto_increment primary key,
+  `HospitalID` int NOT NULL,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `ApePat` varchar(50) DEFAULT NULL,
+  `ApeMat` varchar(50) DEFAULT NULL,
+  `Especialidad` varchar(255) DEFAULT NULL,
+  `Area` varchar(255) DEFAULT NULL,
+  foreign key(`HospitalID`) references `hospital`(`HospitalID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `medico`
+--
+
+INSERT INTO `medico` (`MedicoID`, `HospitalID`, `Nombre`, `ApePat`, `ApeMat`, `Especialidad`, `Area`) VALUES
+(6, 2, 'Jorge Luis', 'Gonzalez', 'Echeverria', 'Dermatología', NULL),
+(7, 5, 'Frank Jesùs', 'Diestra', 'Mezarina', 'Traumatología', NULL),
+(8, 4, 'John Paul', 'Chunga', 'Castillo', 'Pediatría', NULL),
+(9, 3, 'Kevin Jorge', 'Argote', 'Basualdo', 'Cardiología', NULL),
+(10, 1, 'Jose Luis', 'Castillo', 'Montes', 'Gastroenterología', NULL);
+-- Estructura de tabla para la tabla `cita_medica`
+--
+
+CREATE TABLE `cita_medica` (
+  `CitaMedicaID` int NOT NULL auto_increment primary key,
+  `Fecha_Creacion` date NOT NULL,
+  `PacienteID` int NOT NULL,
+  `MedicoID` int NOT NULL,
+  `Area` varchar(50) NOT NULL,
+  `HospitalID` int NOT NULL,
+  `Estado` varchar(50) NOT NULL,
+  foreign key(`PacienteID`) references `paciente`(`PacienteID`),
+  foreign key(`MedicoID`) references `medico`(`MedicoID`),
+  foreign key(`HospitalID`) references `hospital`(`HospitalID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial_medico`
+--
+
+CREATE TABLE `historial_medico` (
+  `HistorialMedicoID` int NOT NULL auto_increment primary key,
+  `CitaMedicaID` int DEFAULT NULL,
+  `Sintomas` varchar(450) DEFAULT NULL,
+  `Diagnostico` varchar(250) DEFAULT NULL,
+  `Peso` double DEFAULT NULL,
+  `Altura` double DEFAULT NULL,
+  foreign key(`CitaMedicaID`) references `cita_medica`(`CitaMedicaID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+
+
+
+-- --------------------------------------------------------
+
 -- Índices para tablas volcadas
 --
 --
--- Indices de la tabla `cita_medica`
+/*-- Indices de la tabla `cita_medica`
 --
 ALTER TABLE `cita_medica`
   ADD PRIMARY KEY (`CitaMedicaID`),
@@ -180,44 +186,15 @@ ALTER TABLE `medico`
 -- Indices de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  ADD PRIMARY KEY (`PacienteID`);
+  ADD PRIMARY KEY (`PacienteID`);*/
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `cita_medica`
---
-ALTER TABLE `cita_medica`
-  MODIFY `CitaMedicaID` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `hospital`
---
-ALTER TABLE `hospital`
-  MODIFY `HospitalID` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `medico`
---
-ALTER TABLE `medico`
-  MODIFY `MedicoID` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `paciente`
---
-ALTER TABLE `paciente`
-  MODIFY `PacienteID` int NOT NULL AUTO_INCREMENT;
-
---
 -- Restricciones para tablas volcadas
 --
 
 --
 -- Filtros para la tabla `cita_medica`
 --
-ALTER TABLE `cita_medica`
+/*ALTER TABLE `cita_medica`
   ADD CONSTRAINT `cita_medica_ibfk_1` FOREIGN KEY (`HospitalID`) REFERENCES `hospital` (`HospitalID`),
   ADD CONSTRAINT `cita_medica_ibfk_2` FOREIGN KEY (`MedicoID`) REFERENCES `medico` (`MedicoID`),
   ADD CONSTRAINT `cita_medica_ibfk_3` FOREIGN KEY (`PacienteID`) REFERENCES `paciente` (`PacienteID`);
@@ -232,7 +209,7 @@ ALTER TABLE `historial_medico`
 -- Filtros para la tabla `medico`
 --
 ALTER TABLE `medico`
-  ADD CONSTRAINT `medico_ibfk_1` FOREIGN KEY (`HospitalID`) REFERENCES `hospital` (`HospitalID`);
+  ADD CONSTRAINT `medico_ibfk_1` FOREIGN KEY (`HospitalID`) REFERENCES `hospital` (`HospitalID`);*/
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

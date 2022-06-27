@@ -1,14 +1,35 @@
 package com.cibertec.jpa.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.cibertec.model.dto.HistorialMedicoDTO;
 
-public class HistorialMedicoJPA {
+@Entity
+@Table(name = "historial_medico")
+public class HistorialMedicoJPA implements Serializable{
 	
+	@Id
+	@Column(name = "HistorialMedicoID")
 	private int id_historialmedico;
+	
+	@Column(name = "CitaMedicaID")
 	private int id_citamedica;
+	
+	@Column(name = "Sintomas")
 	private String sintomas;
+	
+	@Column(name = "Diagnostico")
 	private String diagnostico;
+	
+	@Column(name = "Peso")
 	private double peso;
+	
+	@Column(name = "Altura")
 	private double altura;
 	
 	public HistorialMedicoJPA() {

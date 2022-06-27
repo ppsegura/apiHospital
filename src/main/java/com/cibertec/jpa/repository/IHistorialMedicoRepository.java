@@ -5,9 +5,9 @@ import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cibertec.jpa.entity.MedicoJPA;
+import com.cibertec.jpa.entity.HistorialMedicoJPA;
 
-@Repository("repositoriomedico")
-public interface IMedicoRepository extends JpaRepository<MedicoJPA, Serializable>{
+@Repository("repositoriohistorial")
+public interface IHistorialMedicoRepository extends JpaRepository<HistorialMedicoJPA, Serializable>{
 
 }

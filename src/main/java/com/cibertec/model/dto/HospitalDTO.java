@@ -1,8 +1,10 @@
 package com.cibertec.model.dto;
 
+import java.io.Serializable;
+
 import com.cibertec.jpa.entity.HospitalJPA;
 
-public class HospitalDTO {
+public class HospitalDTO implements Serializable{
 	
 	private int id_hospital;
 	private String departamento;

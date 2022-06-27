@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.cibertec.jpa.entity.MedicoJPA;
-import com.cibertec.jpa.entity.PacienteJPA;
 import com.cibertec.jpa.repository.IMedicoRepository;
 import com.cibertec.model.dto.MedicoDTO;
 import com.cibertec.service.IMedicoService;

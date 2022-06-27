@@ -102,8 +102,8 @@ public class MedicoRestController {
 		
 	}
 	
-	//endpoint: http://localhost:8083/apiMedico/getPaciente
-	@GetMapping("/getPaciente/{id}")
+	//endpoint: http://localhost:8083/apiMedico/getMedico
+	@GetMapping("/getMedico/{id}")
 	public MedicoDTO obtenerMedico(@PathVariable("id") int id){
 		System.out.println("ini: obtenerMedico");
 		
